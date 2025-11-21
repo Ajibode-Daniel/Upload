@@ -7,7 +7,7 @@ import {
   TaskStatus,
   TaskResult,
 } from '../types/task.types';
-import { FileType } from '../types/file.types';
+import { FileType } from '../types/task.types';
 import { NotFoundError } from '../utils/error';
 import { logger } from '../utils/logger';
 

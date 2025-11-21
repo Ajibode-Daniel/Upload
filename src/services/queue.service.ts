@@ -3,7 +3,7 @@ import Redis from 'ioredis';
 import { redisConfig } from '../config/redis.config';
 import { queueConfigs, defaultJobOptions } from '../config/queue.config';
 import { QueueName, JobData } from '../types/queue.types';
-import { FileType } from '../types/file.types';
+import { FileType } from '../types/task.types';
 import { logger } from '../utils/logger';
 
 class QueueService {
