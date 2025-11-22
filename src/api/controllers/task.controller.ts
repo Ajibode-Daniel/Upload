@@ -138,12 +138,21 @@ export class TaskController {
   }
 
   async healthCheck(req: Request, res: Response) {
-    res.json({
-      success: true,
-      message: 'Service is healthy',
-      timestamp: new Date().toISOString(),
-    });
-  }
+  const dbHealthy = await db.healthCheck();
+  const queueMetrics = await queueService.getAllQueueMetrics();
+  
+  res.json({
+    success: true,
+    message: 'Service is healthy',
+    timestamp: new Date().toISOString(),
+    status: {
+      database: dbHealthy ? 'healthy' : 'unhealthy',
+      queues: queueMetrics,
+      uptime: process.uptime(),
+      memory: process.memoryUsage(),
+    }
+  });
+}
 }
 
 export const taskController = new TaskController();
